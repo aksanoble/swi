@@ -4,6 +4,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import stateCodes from "../data/StateCodes.json";
 
 import Lists from "./Lists";
+import StatePanel from "./StatePanel";
 
 const navigation = [{ name: "STATE-WISE", href: "#", current: true }];
 
@@ -91,9 +92,7 @@ export default function Home(props) {
               <Lists location={location} setLocation={setLocation} />
               {/* Replace with your content */}
               <div className="px-4 py-8 sm:px-0">
-                <div className="border-4 border-dashed border-gray-200 rounded-lg h-screen">
-                  {stateCodes[location]}
-                </div>
+                <StatePanel data={props.data[location]} />
               </div>
               {/* /End replace */}
             </div>
