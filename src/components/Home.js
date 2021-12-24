@@ -103,7 +103,10 @@ export default function Home(props) {
                       />
                     }
                   />
-                  <Route path="national" element={<NationPanel />} />
+                  <Route
+                    path="national"
+                    element={<NationPanel data={props.data} />}
+                  />
                 </Routes>
               </div>
             </div>
