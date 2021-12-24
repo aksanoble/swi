@@ -1,5 +1,9 @@
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import React, { useState } from "react";
+import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import stateCodes from "../data/StateCodes.json";
+
+import Lists from "./Lists";
 
 const navigation = [{ name: "STATE-WISE", href: "#", current: true }];
 
@@ -7,7 +11,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Home(props) {
+  const [location, setLocation] = useState("AS");
   return (
     <>
       <div className="min-h-full">
@@ -17,9 +22,9 @@ export default function Example() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                   <div className="flex">
-                    <div className="flex-shrink-0 flex items-center">
+                    <a href="/" className="flex-shrink-0 flex items-center">
                       Covid-19-India
-                    </div>
+                    </a>
                     <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                       {navigation.map(item => (
                         <a
@@ -81,18 +86,14 @@ export default function Example() {
         </Disclosure>
 
         <div className="py-10">
-          <header>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-bold leading-tight text-gray-900">
-                Statewise
-              </h1>
-            </div>
-          </header>
           <main>
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+              <Lists location={location} setLocation={setLocation} />
               {/* Replace with your content */}
               <div className="px-4 py-8 sm:px-0">
-                <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+                <div className="border-4 border-dashed border-gray-200 rounded-lg h-screen">
+                  {stateCodes[location]}
+                </div>
               </div>
               {/* /End replace */}
             </div>
