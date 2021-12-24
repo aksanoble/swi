@@ -9,7 +9,7 @@ export default function StatePanel(props) {
   );
   return (
     <div>
-      Population: {props.data.meta.population}
+      <h2 className="font-bold">Population: {props.data.meta.population}</h2>
       <div className="h-128">
         <Chart data={vaccinatedDistricts} />
       </div>
