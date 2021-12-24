@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { useRouteMatch, useLocation } from "react-router-dom";
+
 import axios from "axios";
 import "./App.css";
 import Home from "./components/Home";
@@ -7,6 +9,8 @@ import Home from "./components/Home";
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,5 +1,6 @@
 import { get } from "lodash";
 import Chart from "./Chart";
+import Lists from "./Lists";
 import { filterVaccinatedDistricts } from "../utils";
 
 export default function StatePanel(props) {
@@ -9,7 +10,12 @@ export default function StatePanel(props) {
   );
   return (
     <div>
-      <h2 className="font-bold">Population: {props.data.meta.population}</h2>
+      <Lists location={props.location} setLocation={props.setLocation} />
+      <div>
+        <h2 className="font-bold pt-4">
+          Population: {props.data.meta.population}
+        </h2>
+      </div>
       <div className="h-128">
         <Chart data={vaccinatedDistricts} />
       </div>

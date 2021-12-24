@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import Lists from "./Lists";
 import StatePanel from "./StatePanel";
-
-const navigation = [{ name: "STATE-WISE", href: "#", current: true }];
+import NationPanel from "./NationPanel";
+import { Route, Routes, useLocation, Link } from "react-router-dom";
+import { getCurrentNav } from "../utils";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -12,6 +12,9 @@ function classNames(...classes) {
 
 export default function Home(props) {
   const [location, setLocation] = useState("KA");
+  const path = useLocation();
+  const navigation = getCurrentNav(path.pathname);
+
   return (
     <>
       <div className="min-h-full">
@@ -21,14 +24,14 @@ export default function Home(props) {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                   <div className="flex">
-                    <a href="/" className="flex-shrink-0 flex items-center">
+                    <Link to="/" className="flex-shrink-0 flex items-center">
                       Covid-19-India
-                    </a>
+                    </Link>
                     <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                       {navigation.map(item => (
-                        <a
+                        <Link
                           key={item.name}
-                          href={item.href}
+                          to={item.href}
                           className={classNames(
                             item.current
                               ? "border-indigo-500 text-gray-900"
@@ -38,7 +41,7 @@ export default function Home(props) {
                           aria-current={item.current ? "page" : undefined}
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -84,15 +87,25 @@ export default function Home(props) {
           )}
         </Disclosure>
 
-        <div className="py-10">
+        <div>
           <main>
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-              <Lists location={location} setLocation={setLocation} />
               {/* Replace with your content */}
-              <div className="px-4 py-8 sm:px-0">
-                <StatePanel data={props.data[location]} />
+              <div className="px-4 py-4 sm:px-0">
+                <Routes>
+                  <Route
+                    path="statewise"
+                    element={
+                      <StatePanel
+                        location={location}
+                        setLocation={setLocation}
+                        data={props.data[location]}
+                      />
+                    }
+                  />
+                  <Route path="national" element={<NationPanel />} />
+                </Routes>
               </div>
-              {/* /End replace */}
             </div>
           </main>
         </div>

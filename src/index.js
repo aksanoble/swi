@@ -1,13 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM, { render } from "react-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./index.css";
 import App from "./App";
+
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Routes>
+      <Route path="/*" element={<App />}></Route>
+      <Route index element={<Navigate to="statewise" />}></Route>
+    </Routes>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
