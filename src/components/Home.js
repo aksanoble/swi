@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import stateCodes from "../data/StateCodes.json";
-
 import Lists from "./Lists";
 import StatePanel from "./StatePanel";
 
@@ -13,7 +11,7 @@ function classNames(...classes) {
 }
 
 export default function Home(props) {
-  const [location, setLocation] = useState("AS");
+  const [location, setLocation] = useState("KA");
   return (
     <>
       <div className="min-h-full">

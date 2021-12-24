@@ -1,20 +1,18 @@
-import stateCodes from "../data/StateCodes.json";
 import { get } from "lodash";
-
-const people = [
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    role: "Admin",
-    email: "jane.cooper@example.com"
-  }
-];
+import Chart from "./Chart";
+import { filterVaccinatedDistricts } from "../utils";
 
 export default function StatePanel(props) {
   const districts = Object.keys(props.data.districts);
+  const vaccinatedDistricts = filterVaccinatedDistricts(
+    Object.entries(props.data.districts)
+  );
   return (
     <div>
       Population: {props.data.meta.population}
+      <div className="h-128">
+        <Chart data={vaccinatedDistricts} />
+      </div>
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
