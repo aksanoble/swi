@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import stateCodes from "../data/StateCodes.json";
+import indiaJSON from "../data/india_states.json";
 
 import {
   ComposableMap,
@@ -7,9 +8,6 @@ import {
   Geography,
   ZoomableGroup
 } from "react-simple-maps";
-
-const geoUrl =
-  "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/india/india-states.json";
 
 const MapChart = ({ data, setTooltipContent }) => {
   return (
@@ -21,8 +19,8 @@ const MapChart = ({ data, setTooltipContent }) => {
           scale: 1000
         }}
       >
-        <ZoomableGroup center={[80, 23]}>
-          <Geographies geography={geoUrl}>
+        <ZoomableGroup center={[80, 22]}>
+          <Geographies geography={indiaJSON}>
             {({ geographies }) =>
               geographies.map(geo => {
                 return (
@@ -30,7 +28,7 @@ const MapChart = ({ data, setTooltipContent }) => {
                     key={geo.rsmKey}
                     geography={geo}
                     onMouseEnter={() => {
-                      const stateCode = geo.properties.HASC_1.split(".")[1];
+                      const stateCode = geo.properties.ID;
                       const stateName = stateCodes[stateCode];
                       const totalConfirmed = data[stateCode].total.confirmed;
                       setTooltipContent(

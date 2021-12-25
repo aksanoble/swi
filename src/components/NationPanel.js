@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import MapChart from "./Map";
 import ReactTooltip from "react-tooltip";
 
-export default function(props) {
+export default function NationPanel(props) {
   const [content, setContent] = useState("Hello");
 
   return (
