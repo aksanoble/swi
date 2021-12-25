@@ -15,7 +15,7 @@ export default function(props) {
       <div>Population: {props.data.TT.meta.population}</div>
       <div>Vaccinated Population: {props.data.TT.total.vaccinated1}</div>
       <div className="w-2/3 border-black border-2">
-        <MapChart setTooltipContent={setContent} />
+        <MapChart data={props.data} setTooltipContent={setContent} />
         <ReactTooltip>{content}</ReactTooltip>
       </div>
     </div>
